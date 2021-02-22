@@ -2,6 +2,8 @@
 # covr : https://covr.r-lib.org
 
 language: R
+r_packages:
+    - covr
 cache: packages
 after_success:
   - Rscript -e 'covr::codecov()'
