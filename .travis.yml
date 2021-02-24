@@ -1,7 +1,7 @@
 # R for travis: see documentation at https://docs.travis-ci.com/user/languages/r
 # covr : https://covr.r-lib.org
 
-language: R
+language: r
 r_packages:
     - covr
 cache: packages
