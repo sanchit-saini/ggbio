@@ -915,3 +915,26 @@ scale_y_continuous_by_group <- function(df, group, group.selfish) {
       list(scale_y_continuous(breaks = NULL))
     }
 }
+
+## Concatenate already created aes with x*/y* and recreate aes
+append_aes <- function(aes.args, x, xend, y, yend, xmin, xmax, ymin, ymax) {
+    if (!missing(xmin) && !missing(xmax) && !missing(ymin) && !missing(ymax)) {
+        mapping_args <- list(
+                            xmin = xmin,
+                            xmax = xmax,
+                            ymin = ymin,
+                            ymax = ymax
+                          )
+        args <- c(aes.args, mapping_args)
+    }
+    if (!missing(x) && !missing(xend) && !missing(y) && !missing(yend)) {
+        mapping_args <- list(
+                            x = x,
+                            xend = xend,
+                            y = y,
+                            yend = yend
+                          )
+        args <- c(aes.args, mapping_args)
+    }
+    aes <- do.call(aes, args)
+}

@@ -30,5 +30,5 @@ setClassUnion("gg_OR_NULL", c("gg", "NULL"))
 setOldClass("grob")
 setOldClass("trellis")
 setOldClass("lattice")
-
+setOldClass("uneval")
 
