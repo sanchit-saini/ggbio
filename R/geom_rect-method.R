@@ -43,28 +43,28 @@ geom_grect <- function(mapping = NULL, data = NULL, stat = "identity",
     .changeStrandColor(layer, mapping)
 }
 
-setGeneric("geom_rect", function(data, ...) standardGeneric("geom_rect"))
+geom_rect <- new_generic("geom_rect", signature = list("data"=NULL))
 
-setMethod(geom_rect, "data.frame",
-          function(data = NULL, mapping = NULL, stat = "identity",
-                   position = "identity", ..., na.rm = FALSE,
-                   show.legend = NA, inherit.aes = TRUE,
-                   rect.height = NULL) {
+method(geom_rect, "data.frame") <-
+       function(data = NULL, mapping = NULL, stat = "identity",
+                position = "identity", ..., na.rm = FALSE,
+                show.legend = NA, inherit.aes = TRUE,
+                rect.height = NULL) {
     geom_grect(mapping = mapping, data = data, stat = stat,
                position = position, ..., na.rm = na.rm,
                show.legend = show.legend,
                inherit.aes = inherit.aes,
                rect.height = rect.height)
-})
+}
 
-setMethod(geom_rect, "GRanges",
-          function(data = NULL, mapping = NULL, ...,
-                   facets = ~seqnames, rect.height = NULL,
-                   stat = c("stepping", "identity"),
-                   group.selfish = TRUE, na.rm = FALSE,
-                   group = NULL, extend.size = 0,
-                   xlab = "Genomic Coordinates",
-                   ylab, main) {
+method(geom_rect, "GRanges") <-
+       function(data = NULL, mapping = NULL, ...,
+                facets = ~seqnames, rect.height = NULL,
+                stat = c("stepping", "identity"),
+                group.selfish = TRUE, na.rm = FALSE,
+                group = NULL, extend.size = 0,
+                xlab = "Genomic Coordinates",
+                ylab, main) {
     stat <- match.arg(stat)
 
     if (identical(stat, "identity")) {
@@ -85,5 +85,4 @@ setMethod(geom_rect, "GRanges",
       na.rm = na.rm, ...),
       facet_grid(facets),
       Labels(xlab, ylab, main))
-})
-
+}
