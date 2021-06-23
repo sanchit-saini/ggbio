@@ -1,8 +1,8 @@
 on:
   push:
-    branches: [master]
+    branches: [travis-codecov-integration]
   pull_request:
-    branches: [master]
+    branches: [travis-codecov-integration]
 
 name: R-CMD-check
 
@@ -19,7 +19,7 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v2
         with:
-          ref: 'master'
+          ref: 'travis-codecov-integration'
 
       - name: Query dependencies
         run: |
