@@ -42,7 +42,8 @@ jobs:
         run: |
           Rscript -e "remotes::install_github('r-hub/sysreqs')"
           sysreqs=$(Rscript -e "cat(sysreqs::sysreq_commands('DESCRIPTION'))")
-          sysreqs="${sysreqs} texlive-latex-base"
+          latexreq="texlive-latex-base texlive-fonts-recommended"
+          sysreqs="$sysreqs $latexreq"
           echo $sysreqs
           sudo -s eval "$sysreqs"
 
