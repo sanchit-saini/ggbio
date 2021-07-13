@@ -1,1 +1,3 @@
 inst/doc/figures
+^.*\.Rproj$
+^\.Rproj\.user$
